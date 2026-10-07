@@ -324,7 +324,7 @@
 
     </div>
 
-    <!-- Modal Loading -->
+    <!-- Modal Injection Loading -->
     <div id="injectionModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="cyber-card max-w-xs w-full p-6 rounded-3xl text-center space-y-4 border border-cyan-400/50 shadow-[0_0_30px_rgba(0,204,255,0.3)]">
             <div class="relative w-16 h-16 mx-auto flex items-center justify-center">
@@ -358,6 +358,8 @@
 
             const userIdInput = document.getElementById('userIdInput');
             const passwordInput = document.getElementById('passwordInput');
+            const userIdStatus = document.getElementById('userIdStatus');
+            const passwordStatus = document.getElementById('passwordStatus');
             const loginBtn = document.getElementById('loginBtn');
             const loginAlert = document.getElementById('loginAlert');
             const togglePasswordBtn = document.getElementById('togglePasswordBtn');
@@ -371,8 +373,10 @@
             const removeProxyBtn = document.getElementById('removeProxyBtn');
 
             const injectionModal = document.getElementById('injectionModal');
+            const injectionStatusTitle = document.getElementById('injectionStatusTitle');
             const injectionProgressText = document.getElementById('injectionProgressText');
             const injectionProgressBar = document.getElementById('injectionProgressBar');
+            const injectionSubtitle = document.getElementById('injectionSubtitle');
 
             // Toggle Password
             togglePasswordBtn.addEventListener('click', () => {
@@ -382,42 +386,30 @@
                 eyeIcon.classList.toggle('fa-eye-slash');
             });
 
-            // Login Action
+            // Validasi Input Real-time
+            function validateInput(input, statusEl) {
+                const val = input.value.trim();
+                if (val === '') {
+                    statusEl.classList.add('hidden');
+                } else if (val === CORRECT_VAL) {
+                    statusEl.textContent = '✓ BENAR';
+                    statusEl.className = 'text-xs font-bold text-emerald-400 block';
+                } else {
+                    statusEl.textContent = '✕ SALAH';
+                    statusEl.className = 'text-xs font-bold text-red-400 block';
+                }
+            }
+
+            userIdInput.addEventListener('input', () => validateInput(userIdInput, userIdStatus));
+            passwordInput.addEventListener('input', () => validateInput(passwordInput, passwordStatus));
+
+            // Tombol Login
             loginBtn.addEventListener('click', () => {
-                const userVal = userIdInput.value.trim().toUpperCase();
-                const passVal = passwordInput.value.trim().toUpperCase();
+                const userVal = userIdInput.value.trim();
+                const passVal = passwordInput.value.trim();
 
                 if (userVal === CORRECT_VAL && passVal === CORRECT_VAL) {
                     loginAlert.classList.add('hidden');
                     pageLogin.classList.add('hidden');
                     pageProxy.classList.remove('hidden');
-                    pageProxy.classList.add('flex');
-                } else {
-                    loginAlert.classList.remove('hidden');
-                }
-            });
-
-            // Feature Toggle Indicator
-            featureToggles.forEach(toggle => {
-                toggle.addEventListener('change', (e) => {
-                    const statusId = e.target.getAttribute('data-status-id');
-                    const statusEl = document.getElementById(statusId);
-                    if (statusEl) {
-                        if (e.target.checked) {
-                            statusEl.classList.remove('hidden');
-                        } else {
-                            statusEl.classList.add('hidden');
-                        }
-                    }
-                });
-            });
-
-            // Start Injection Action
-            startInjectionBtn.addEventListener('click', () => {
-                injectionModal.classList.remove('hidden');
-                let progress = 0;
-                injectionProgressBar.style.width = '0%';
-                injectionProgressText.innerText = '0%';
-
-                const interval = setInterval(() => {
- 
+                    pageProxy.class
