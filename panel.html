@@ -1,292 +1,419 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Panel</title>
-    <!-- Font Awesome untuk Icon -->
+    <title>RAFFI PROXY V1 - LOGIN PANEL</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        tech: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#0a1017',
+                            card: '#121e2b',
+                            cardBorder: '#1e384c',
+                            cyan: '#00ccff',
+                            teal: '#008bbf',
+                            accent: '#0fdcbf'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background: radial-gradient(circle at center, #0a192f 0%, #030811 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background-color: #060b11;
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+            user-select: none;
+            overflow-x: hidden;
         }
 
-        /* Container Card */
-        .card {
-            background: rgba(10, 20, 35, 0.75);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            width: 100%;
-            max-width: 400px;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 180, 216, 0.1);
-            text-align: center;
-        }
-
-        /* HALAMAN 1: LOGIN */
-        .avatar-container {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .title {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 6px;
-        }
-
-        .title span {
-            color: #00b4d8;
-        }
-
-        .subtitle {
-            font-size: 13px;
-            color: #8a99ad;
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: #b0c4de;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .input-wrapper {
+        /* Cyber Lightning Background Background Effect */
+        .cyber-bg {
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(0, 204, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(0, 139, 191, 0.12) 0%, transparent 60%),
+                linear-gradient(180deg, #060b11 0%, #0a141f 50%, #050a0f 100%);
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
-        .input-wrapper i.icon-left {
+        .cyber-bg::before {
+            content: '';
             position: absolute;
-            left: 14px;
-            color: #00b4d8;
-            font-size: 14px;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(rgba(0, 204, 255, 0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+            opacity: 0.3;
+            pointer-events: none;
         }
 
-        .input-wrapper i.icon-right {
-            position: absolute;
-            right: 14px;
-            color: #00b4d8;
-            font-size: 14px;
-            cursor: pointer;
+        /* Glowing Border Effects */
+        .cyber-card {
+            background: linear-gradient(145deg, rgba(16, 28, 42, 0.85) 0%, rgba(8, 15, 24, 0.95) 100%);
+            border: 1px solid rgba(0, 204, 255, 0.25);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.08), inset 0 0 15px rgba(0, 204, 255, 0.03);
+            backdrop-filter: blur(10px);
         }
 
-        .input-wrapper input {
-            width: 100%;
-            padding: 12px 40px 12px 40px;
-            background: rgba(15, 28, 48, 0.8);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
+        .cyber-input-wrapper {
+            background: rgba(14, 25, 38, 0.7);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 204, 255, 0.05);
             transition: all 0.3s ease;
         }
 
-        .input-wrapper input::placeholder {
-            color: #4a5d78;
+        .cyber-input-wrapper:focus-within {
+            border-color: #00ccff;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 204, 255, 0.25);
         }
 
-        .input-wrapper input:focus {
-            border-color: #00b4d8;
-            box-shadow: 0 0 10px rgba(0, 180, 216, 0.4);
+        /* Custom Cyan Gradient Button */
+        .btn-cyan {
+            background: linear-gradient(180deg, #00d2ff 0%, #0077aa 100%);
+            box-shadow: 0 4px 15px rgba(0, 204, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.25s ease;
         }
 
-        .message {
-            display: none;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: bold;
-            background: rgba(255, 77, 77, 0.2);
-            border: 1px solid #ff4d4d;
-            color: #ff4d4d;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            background: linear-gradient(90deg, #1d4ed8 0%, #00b4d8 100%);
-            border: none;
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-action:hover {
-            opacity: 0.9;
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+        .btn-cyan:hover {
+            background: linear-gradient(180deg, #1ad6ff 0%, #0088c6 100%);
+            box-shadow: 0 6px 20px rgba(0, 204, 255, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
             transform: translateY(-1px);
         }
 
-        /* HALAMAN 2: DASHBOARD (SEMBUNYI SECARA DEFAULT) */
-        #pageDashboard {
-            display: none;
+        .btn-cyan:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0, 204, 255, 0.3);
         }
 
-        .dashboard-content {
-            color: #ffffff;
-            padding: 10px 0;
+        /* Outline Button */
+        .btn-outline {
+            background: rgba(8, 18, 28, 0.6);
+            border: 1px solid rgba(0, 204, 255, 0.4);
+            color: #00ccff;
+            transition: all 0.25s ease;
         }
 
-        .dashboard-icon {
-            font-size: 50px;
-            color: #00b4d8;
-            margin-bottom: 15px;
+        .btn-outline:hover {
+            background: rgba(0, 204, 255, 0.1);
+            border-color: #00ccff;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
         }
 
-        .btn-logout {
-            background: linear-gradient(90deg, #d81d1d 0%, #d80054 100%);
-            box-shadow: 0 4px 15px rgba(216, 0, 84, 0.3);
-            margin-top: 25px;
+        /* Custom Toggle Switch */
+        .toggle-bg {
+            background-color: #1a2a3a;
+            border: 1px solid #2d4a63;
+            transition: all 0.3s ease;
+        }
+
+        input:checked ~ .toggle-bg {
+            background: linear-gradient(90deg, #0099cc 0%, #00ccff 100%);
+            border-color: #00ccff;
+            box-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
+        }
+
+        .toggle-dot {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:checked ~ .toggle-bg .toggle-dot {
+            transform: translateX(100%);
+            background-color: #ffffff;
+        }
+
+        /* Lightning Canvas FX Overlay */
+        #lightningCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Page Transitions */
+        .page-container {
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
-<body>
+<body class="cyber-bg min-h-screen flex items-center justify-center p-4">
 
-    <!-- HALAMAN 1: FORM LOGIN -->
-    <div id="pageLogin" class="card">
-        <div class="avatar-container">
-            <img src="https://i.pinimg.com/564x/a2/e8/3f/a2e83f3e098492efb156b26804a2dd8b.jpg" alt="Logo">
+    <!-- Canvas Background for Subtle Electric Particles -->
+    <canvas id="lightningCanvas"></canvas>
+
+    <div class="page-container w-full max-w-md my-auto py-6">
+
+        <!-- ================= PAGE 1: LOGIN PANEL ================= -->
+        <div id="pageLogin" class="w-full flex flex-col items-center">
+            
+            <!-- Anime Profile Avatar -->
+            <div class="relative mb-3">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-cyan-400 p-1 bg-slate-900 shadow-[0_0_20px_rgba(0,204,255,0.4)]">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=KilluaRaffi" alt="Avatar" class="w-full h-full object-cover rounded-full bg-slate-800">
+                </div>
+                <!-- Aura Glow behind avatar -->
+                <div class="absolute -inset-1 rounded-full bg-cyan-500 opacity-20 blur-md -z-10"></div>
+            </div>
+
+            <!-- Header Titles -->
+            <h1 class="text-3xl font-extrabold tracking-wider text-white font-tech text-center drop-shadow-[0_2px_10px_rgba(0,204,255,0.5)]">
+                LOGIN <span class="text-cyan-400">PANEL</span>
+            </h1>
+            <p class="text-xs text-slate-400 mt-1 mb-8 text-center font-medium tracking-wide">
+                Welcome back, please enter your credentials
+            </p>
+
+            <!-- Login Form Card -->
+            <div class="w-full space-y-5">
+                
+                <!-- USER ID INPUT -->
+                <div>
+                    <div class="flex justify-between items-center mb-1.5 px-1">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-300">USER ID</label>
+                        <!-- Real-time Status Indicator -->
+                        <span id="userIdStatus" class="text-xs font-bold transition-all duration-200 hidden"></span>
+                    </div>
+                    <div class="cyber-input-wrapper flex items-center px-4 py-3.5 rounded-2xl">
+                        <i class="fa-solid fa-user text-cyan-400 text-base mr-3.5"></i>
+                        <input type="text" id="userIdInput" placeholder="Enter your User ID" autocomplete="off"
+                            class="w-full bg-transparent text-sm text-white placeholder-slate-500 focus:outline-none font-medium">
+                    </div>
+                </div>
+
+                <!-- PASSWORD INPUT -->
+                <div>
+                    <div class="flex justify-between items-center mb-1.5 px-1">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-300">PASSWORD</label>
+                        <!-- Real-time Status Indicator -->
+                        <span id="passwordStatus" class="text-xs font-bold transition-all duration-200 hidden"></span>
+                    </div>
+                    <div class="cyber-input-wrapper flex items-center px-4 py-3.5 rounded-2xl">
+                        <i class="fa-solid fa-lock text-cyan-400 text-base mr-3.5"></i>
+                        <input type="password" id="passwordInput" placeholder="Enter your Password" autocomplete="off"
+                            class="w-full bg-transparent text-sm text-white placeholder-slate-500 focus:outline-none font-medium">
+                        <button type="button" id="togglePasswordBtn" class="text-cyan-400/70 hover:text-cyan-400 transition-colors focus:outline-none ml-2">
+                            <i class="fa-solid fa-eye text-base" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Global Alert Box -->
+                <div id="loginAlert" class="hidden p-3 rounded-xl text-xs font-bold text-center bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse">
+                    USER ID atau Password masih salah!
+                </div>
+
+                <!-- LOGIN BUTTON -->
+                <button id="loginBtn" class="w-full btn-cyan text-white font-extrabold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-base tracking-wider uppercase mt-4">
+                    <i class="fa-solid fa-right-to-bracket text-lg"></i>
+                    LOGIN
+                </button>
+            </div>
         </div>
 
-        <div class="title">LOGIN <span>PANEL</span></div>
-        <p class="subtitle">Welcome back, please enter your credentials</p>
+        <!-- ================= PAGE 2: RAFFI PROXY V1 PANEL ================= -->
+        <div id="pageProxy" class="w-full flex-col items-center hidden">
+            
+            <!-- Header Titles -->
+            <h1 class="text-2xl font-black tracking-wider text-white font-tech text-center drop-shadow-[0_2px_10px_rgba(0,204,255,0.5)]">
+                RAFFI PROXY V1
+            </h1>
+            <p class="text-xs font-semibold text-cyan-400/90 text-center tracking-widest uppercase mt-0.5 mb-1">
+                FF PLAY STORE
+            </p>
+            <p class="text-[11px] font-medium text-slate-400 text-center uppercase tracking-wider mb-6">
+                KHUSUS HP ANDROID
+            </p>
 
-        <div id="messageBox" class="message"></div>
+            <!-- Features Container -->
+            <div class="w-full space-y-6">
+                
+                <!-- SECTION 1: Safe Features -->
+                <div class="space-y-2">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
+                        Safe Features
+                    </h2>
+                    
+                    <div class="cyber-card rounded-2xl p-4 space-y-4">
+                        
+                        <!-- Toggle 1 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col pr-2">
+                                <span class="text-xs font-extrabold text-white tracking-wide">HS 100% - CREATE YOUR MAP</span>
+                                <span class="text-[10px] text-cyan-400 font-bold hidden status-label" id="status-hs100">
+                                    <i class="fa-solid fa-circle-check mr-1"></i>Aktif
+                                </span>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                                <input type="checkbox" class="sr-only feature-toggle" data-status-id="status-hs100">
+                                <div class="toggle-bg w-12 h-6 rounded-full p-0.5">
+                                    <div class="toggle-dot w-5 h-5 rounded-full bg-slate-400 shadow-md"></div>
+                                </div>
+                            </label>
+                        </div>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <label>USER ID</label>
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-user icon-left"></i>
-                    <input type="text" id="userid" placeholder="Enter your User ID" required>
+                        <!-- Divider -->
+                        <div class="h-[1px] bg-slate-800/80 w-full"></div>
+
+                        <!-- Toggle 2 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col pr-2">
+                                <span class="text-xs font-extrabold text-white tracking-wide">HS + ANTENNA</span>
+                                <span class="text-[10px] text-cyan-400 font-bold hidden status-label" id="status-hsantenna">
+                                    <i class="fa-solid fa-circle-check mr-1"></i>Aktif
+                                </span>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                                <input type="checkbox" class="sr-only feature-toggle" data-status-id="status-hsantenna">
+                                <div class="toggle-bg w-12 h-6 rounded-full p-0.5">
+                                    <div class="toggle-dot w-5 h-5 rounded-full bg-slate-400 shadow-md"></div>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <label>PASSWORD</label>
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-lock icon-left"></i>
-                    <input type="password" id="password" placeholder="Enter your Password" required>
-                    <i class="fa-solid fa-eye icon-right" onclick="togglePassword()"></i>
+                <!-- SECTION 2: Risk Features -->
+                <div class="space-y-2">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
+                        Risk Features
+                    </h2>
+                    
+                    <div class="cyber-card rounded-2xl p-4 space-y-4">
+                        
+                        <!-- Toggle 3 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col pr-2">
+                                <span class="text-xs font-extrabold text-white tracking-wide">MAGIC BULLET + ANTENNA</span>
+                                <span class="text-[10px] text-cyan-400 font-bold hidden status-label" id="status-magic">
+                                    <i class="fa-solid fa-circle-check mr-1"></i>Aktif
+                                </span>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                                <input type="checkbox" class="sr-only feature-toggle" data-status-id="status-magic">
+                                <div class="toggle-bg w-12 h-6 rounded-full p-0.5">
+                                    <div class="toggle-dot w-5 h-5 rounded-full bg-slate-400 shadow-md"></div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="h-[1px] bg-slate-800/80 w-full"></div>
+
+                        <!-- Toggle 4 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col pr-2">
+                                <span class="text-xs font-extrabold text-white tracking-wide">AIM CHEST</span>
+                                <span class="text-[10px] text-cyan-400 font-bold hidden status-label" id="status-aimchest">
+                                    <i class="fa-solid fa-circle-check mr-1"></i>Aktif
+                                </span>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                                <input type="checkbox" class="sr-only feature-toggle" data-status-id="status-aimchest">
+                                <div class="toggle-bg w-12 h-6 rounded-full p-0.5">
+                                    <div class="toggle-dot w-5 h-5 rounded-full bg-slate-400 shadow-md"></div>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <button type="submit" class="btn-action">
-                <i class="fa-solid fa-right-to-bracket"></i> LOGIN
-            </button>
-        </form>
+                <!-- ACTION BUTTONS -->
+                <div class="space-y-3 pt-2">
+                    <!-- START INJECTION BUTTON -->
+                    <button id="startInjectionBtn" class="w-full btn-cyan text-white font-extrabold py-3.5 px-6 rounded-2xl text-center text-sm tracking-widest uppercase">
+                        START INJECTION
+                    </button>
+
+                    <!-- REMOVE PROXY BUTTON -->
+                    <button id="removeProxyBtn" class="w-full btn-outline font-extrabold py-3 px-6 rounded-2xl text-center text-xs tracking-widest uppercase">
+                        REMOVE PROXY
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
-    <!-- HALAMAN 2: HALAMAN KEDUA (DASHBOARD) -->
-    <div id="pageDashboard" class="card">
-        <div class="dashboard-content">
-            <i class="fa-solid fa-circle-check dashboard-icon"></i>
-            <div class="title">HALAMAN <span>KEDUA</span></div>
-            <p class="subtitle" style="margin-bottom: 20px;">Selamat Datang Kembali, <strong id="userDisplay" style="color:#00b4d8;"></strong>!</p>
-            <p style="font-size: 14px; color: #a0aab8;">Anda berhasil masuk ke dalam sistem panel utama.</p>
+    <!-- Injection Loading Overlay Modal -->
+    <div id="injectionModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="cyber-card max-w-xs w-full p-6 rounded-3xl text-center space-y-4 border border-cyan-400/50 shadow-[0_0_30px_rgba(0,204,255,0.3)]">
+            <div class="relative w-16 h-16 mx-auto flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-4 border-cyan-500/20"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-cyan-400 border-t-transparent animate-spin"></div>
+                <i class="fa-solid fa-bolt text-cyan-400 text-xl animate-pulse"></i>
+            </div>
             
-            <button onclick="logout()" class="btn-action btn-logout">
-                <i class="fa-solid fa-right-from-bracket"></i> LOGOUT
-            </button>
+            <div>
+                <h3 id="injectionStatusTitle" class="text-base font-extrabold text-white font-tech uppercase tracking-wider">
+                    Injecting Proxy...
+                </h3>
+                <p id="injectionProgressText" class="text-xs text-cyan-400 font-semibold mt-1">
+                    0%
+                </p>
+            </div>
+
+            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden p-0.5 border border-slate-700">
+                <div id="injectionProgressBar" class="bg-gradient-to-r from-cyan-500 to-teal-300 h-full rounded-full w-0 transition-all duration-200"></div>
+            </div>
+
+            <p id="injectionSubtitle" class="text-[10px] text-slate-400 font-medium">
+                Mohon tunggu, menyiapkan berkas injeksi ke Free Fire...
+            </p>
         </div>
     </div>
 
     <script>
-        // Toggle Show/Hide Password
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = event.target;
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Correct Credentials
+            const CORRECT_VAL = "RAFFI";
 
-        // Pindah Halaman saat Login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const userId = document.getElementById('userid').value;
-            const password = document.getElementById('password').value;
-            const messageBox = document.getElementById('messageBox');
+            // DOM Elements Page 1
+            const userIdInput = document.getElementById('userIdInput');
+            const passwordInput = document.getElementById('passwordInput');
+            const userIdStatus = document.getElementById('userIdStatus');
+            const passwordStatus = document.getElementById('passwordStatus');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginAlert = document.getElementById('loginAlert');
+            const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+            const eyeIcon = document.getElementById('eyeIcon');
 
-            if (userId === 'RAFFI' && password === 'RAFFI') {
-                // Sembunyikan pesan error jika ada
-                messageBox.style.display = 'none';
+            // DOM Elements Page Nav
+            const pageLogin = document.getElementById('pageLogin');
+            const pageProxy = document.getElementById('pageProxy');
 
-                // Tampilkan nama pengguna di halaman kedua
-                document.getElementById('userDisplay').innerText = userId;
+            // DOM Elements Page 2
+            const featureToggles = document.querySelectorAll('.feature-toggle');
+            const startInjectionBtn = document.getElementById('startInjectionBtn');
+            const removeProxyBtn = document.getElementById('removeProxyBtn');
 
-                // Sembunyikan Halaman 1, Tampilkan Halaman 2
-                document.getElementById('pageLogin').style.display = 'none';
-                document.getElementById('pageDashboard').style.display = 'block';
-            } else {
-                messageBox.innerText = 'User ID atau Password Salah!';
-                messageBox.style.display = 'block';
-            }
-        });
+            // Modal Elements
+            const injectionModal = document.getElementById('injectionModal');
+            const injectionStatusTitle = document.getElementById('injectionStatusTitle');
+            const injectionProgressText = document.getElementById('injectionProgressText');
+            const injectionProgressBar = document.getElementById('injectionProgressBar');
+            const injectionSubtitle = document.getElementById('injectionSubtitle');
 
-        // Fungsi Logout untuk Kembali ke Halaman 1
-        function logout() {
-            document.getElementById('pageDashboard').style.display = 'none';
-            document.getElementById('pageLogin').style.display = 'block';
-            document.getElementById('userid').value = '';
-            document.getElementById('password').value = '';
-        }
-    </script>
-</body>
-</html>
+            // --- Toggle Password Visibility ---
+            togglePasswor
