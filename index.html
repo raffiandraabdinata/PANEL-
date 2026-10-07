@@ -43,7 +43,6 @@
             overflow-x: hidden;
         }
 
-        /* Cyber Lightning Background Background Effect */
         .cyber-bg {
             background: 
                 radial-gradient(circle at 50% 20%, rgba(0, 204, 255, 0.15) 0%, transparent 50%),
@@ -62,7 +61,6 @@
             pointer-events: none;
         }
 
-        /* Glowing Border Effects */
         .cyber-card {
             background: linear-gradient(145deg, rgba(16, 28, 42, 0.85) 0%, rgba(8, 15, 24, 0.95) 100%);
             border: 1px solid rgba(0, 204, 255, 0.25);
@@ -82,7 +80,6 @@
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 204, 255, 0.25);
         }
 
-        /* Custom Cyan Gradient Button */
         .btn-cyan {
             background: linear-gradient(180deg, #00d2ff 0%, #0077aa 100%);
             box-shadow: 0 4px 15px rgba(0, 204, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -100,7 +97,6 @@
             box-shadow: 0 2px 10px rgba(0, 204, 255, 0.3);
         }
 
-        /* Outline Button */
         .btn-outline {
             background: rgba(8, 18, 28, 0.6);
             border: 1px solid rgba(0, 204, 255, 0.4);
@@ -114,7 +110,6 @@
             box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
         }
 
-        /* Custom Toggle Switch */
         .toggle-bg {
             background-color: #1a2a3a;
             border: 1px solid #2d4a63;
@@ -136,7 +131,6 @@
             background-color: #ffffff;
         }
 
-        /* Lightning Canvas FX Overlay */
         #lightningCanvas {
             position: fixed;
             top: 0;
@@ -147,7 +141,6 @@
             z-index: 1;
         }
 
-        /* Page Transitions */
         .page-container {
             position: relative;
             z-index: 10;
@@ -156,24 +149,20 @@
 </head>
 <body class="cyber-bg min-h-screen flex items-center justify-center p-4">
 
-    <!-- Canvas Background for Subtle Electric Particles -->
     <canvas id="lightningCanvas"></canvas>
 
     <div class="page-container w-full max-w-md my-auto py-6">
 
-        <!-- ================= PAGE 1: LOGIN PANEL ================= -->
+        <!-- PAGE 1: LOGIN PANEL -->
         <div id="pageLogin" class="w-full flex flex-col items-center">
             
-            <!-- Anime Profile Avatar -->
             <div class="relative mb-3">
                 <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-cyan-400 p-1 bg-slate-900 shadow-[0_0_20px_rgba(0,204,255,0.4)]">
                     <img src="https://api.dicebear.com/7.x/bottts/svg?seed=KilluaRaffi" alt="Avatar" class="w-full h-full object-cover rounded-full bg-slate-800">
                 </div>
-                <!-- Aura Glow behind avatar -->
                 <div class="absolute -inset-1 rounded-full bg-cyan-500 opacity-20 blur-md -z-10"></div>
             </div>
 
-            <!-- Header Titles -->
             <h1 class="text-3xl font-extrabold tracking-wider text-white font-tech text-center drop-shadow-[0_2px_10px_rgba(0,204,255,0.5)]">
                 LOGIN <span class="text-cyan-400">PANEL</span>
             </h1>
@@ -181,14 +170,11 @@
                 Welcome back, please enter your credentials
             </p>
 
-            <!-- Login Form Card -->
             <div class="w-full space-y-5">
                 
-                <!-- USER ID INPUT -->
                 <div>
                     <div class="flex justify-between items-center mb-1.5 px-1">
                         <label class="text-xs font-bold uppercase tracking-wider text-slate-300">USER ID</label>
-                        <!-- Real-time Status Indicator -->
                         <span id="userIdStatus" class="text-xs font-bold transition-all duration-200 hidden"></span>
                     </div>
                     <div class="cyber-input-wrapper flex items-center px-4 py-3.5 rounded-2xl">
@@ -198,11 +184,9 @@
                     </div>
                 </div>
 
-                <!-- PASSWORD INPUT -->
                 <div>
                     <div class="flex justify-between items-center mb-1.5 px-1">
                         <label class="text-xs font-bold uppercase tracking-wider text-slate-300">PASSWORD</label>
-                        <!-- Real-time Status Indicator -->
                         <span id="passwordStatus" class="text-xs font-bold transition-all duration-200 hidden"></span>
                     </div>
                     <div class="cyber-input-wrapper flex items-center px-4 py-3.5 rounded-2xl">
@@ -215,12 +199,10 @@
                     </div>
                 </div>
 
-                <!-- Global Alert Box -->
                 <div id="loginAlert" class="hidden p-3 rounded-xl text-xs font-bold text-center bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse">
                     USER ID atau Password masih salah!
                 </div>
 
-                <!-- LOGIN BUTTON -->
                 <button id="loginBtn" class="w-full btn-cyan text-white font-extrabold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-base tracking-wider uppercase mt-4">
                     <i class="fa-solid fa-right-to-bracket text-lg"></i>
                     LOGIN
@@ -228,10 +210,9 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 2: RAFFI PROXY V1 PANEL ================= -->
+        <!-- PAGE 2: RAFFI PROXY V1 PANEL -->
         <div id="pageProxy" class="w-full flex-col items-center hidden">
             
-            <!-- Header Titles -->
             <h1 class="text-2xl font-black tracking-wider text-white font-tech text-center drop-shadow-[0_2px_10px_rgba(0,204,255,0.5)]">
                 RAFFI PROXY V1
             </h1>
@@ -242,10 +223,8 @@
                 KHUSUS HP ANDROID
             </p>
 
-            <!-- Features Container -->
             <div class="w-full space-y-6">
                 
-                <!-- SECTION 1: Safe Features -->
                 <div class="space-y-2">
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
                         Safe Features
@@ -253,7 +232,6 @@
                     
                     <div class="cyber-card rounded-2xl p-4 space-y-4">
                         
-                        <!-- Toggle 1 -->
                         <div class="flex items-center justify-between">
                             <div class="flex flex-col pr-2">
                                 <span class="text-xs font-extrabold text-white tracking-wide">HS 100% - CREATE YOUR MAP</span>
@@ -269,10 +247,8 @@
                             </label>
                         </div>
 
-                        <!-- Divider -->
                         <div class="h-[1px] bg-slate-800/80 w-full"></div>
 
-                        <!-- Toggle 2 -->
                         <div class="flex items-center justify-between">
                             <div class="flex flex-col pr-2">
                                 <span class="text-xs font-extrabold text-white tracking-wide">HS + ANTENNA</span>
@@ -291,7 +267,6 @@
                     </div>
                 </div>
 
-                <!-- SECTION 2: Risk Features -->
                 <div class="space-y-2">
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
                         Risk Features
@@ -299,7 +274,6 @@
                     
                     <div class="cyber-card rounded-2xl p-4 space-y-4">
                         
-                        <!-- Toggle 3 -->
                         <div class="flex items-center justify-between">
                             <div class="flex flex-col pr-2">
                                 <span class="text-xs font-extrabold text-white tracking-wide">MAGIC BULLET + ANTENNA</span>
@@ -315,10 +289,8 @@
                             </label>
                         </div>
 
-                        <!-- Divider -->
                         <div class="h-[1px] bg-slate-800/80 w-full"></div>
 
-                        <!-- Toggle 4 -->
                         <div class="flex items-center justify-between">
                             <div class="flex flex-col pr-2">
                                 <span class="text-xs font-extrabold text-white tracking-wide">AIM CHEST</span>
@@ -337,14 +309,11 @@
                     </div>
                 </div>
 
-                <!-- ACTION BUTTONS -->
                 <div class="space-y-3 pt-2">
-                    <!-- START INJECTION BUTTON -->
                     <button id="startInjectionBtn" class="w-full btn-cyan text-white font-extrabold py-3.5 px-6 rounded-2xl text-center text-sm tracking-widest uppercase">
                         START INJECTION
                     </button>
 
-                    <!-- REMOVE PROXY BUTTON -->
                     <button id="removeProxyBtn" class="w-full btn-outline font-extrabold py-3 px-6 rounded-2xl text-center text-xs tracking-widest uppercase">
                         REMOVE PROXY
                     </button>
@@ -355,7 +324,7 @@
 
     </div>
 
-    <!-- Injection Loading Overlay Modal -->
+    <!-- Modal Loading -->
     <div id="injectionModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="cyber-card max-w-xs w-full p-6 rounded-3xl text-center space-y-4 border border-cyan-400/50 shadow-[0_0_30px_rgba(0,204,255,0.3)]">
             <div class="relative w-16 h-16 mx-auto flex items-center justify-center">
@@ -385,34 +354,70 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Correct Credentials
             const CORRECT_VAL = "RAFFI";
 
-            // DOM Elements Page 1
             const userIdInput = document.getElementById('userIdInput');
             const passwordInput = document.getElementById('passwordInput');
-            const userIdStatus = document.getElementById('userIdStatus');
-            const passwordStatus = document.getElementById('passwordStatus');
             const loginBtn = document.getElementById('loginBtn');
             const loginAlert = document.getElementById('loginAlert');
             const togglePasswordBtn = document.getElementById('togglePasswordBtn');
             const eyeIcon = document.getElementById('eyeIcon');
 
-            // DOM Elements Page Nav
             const pageLogin = document.getElementById('pageLogin');
             const pageProxy = document.getElementById('pageProxy');
 
-            // DOM Elements Page 2
             const featureToggles = document.querySelectorAll('.feature-toggle');
             const startInjectionBtn = document.getElementById('startInjectionBtn');
             const removeProxyBtn = document.getElementById('removeProxyBtn');
 
-            // Modal Elements
             const injectionModal = document.getElementById('injectionModal');
-            const injectionStatusTitle = document.getElementById('injectionStatusTitle');
             const injectionProgressText = document.getElementById('injectionProgressText');
             const injectionProgressBar = document.getElementById('injectionProgressBar');
-            const injectionSubtitle = document.getElementById('injectionSubtitle');
 
-            // --- Toggle Password Visibility ---
-            togglePasswor
+            // Toggle Password
+            togglePasswordBtn.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                eyeIcon.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
+            });
+
+            // Login Action
+            loginBtn.addEventListener('click', () => {
+                const userVal = userIdInput.value.trim().toUpperCase();
+                const passVal = passwordInput.value.trim().toUpperCase();
+
+                if (userVal === CORRECT_VAL && passVal === CORRECT_VAL) {
+                    loginAlert.classList.add('hidden');
+                    pageLogin.classList.add('hidden');
+                    pageProxy.classList.remove('hidden');
+                    pageProxy.classList.add('flex');
+                } else {
+                    loginAlert.classList.remove('hidden');
+                }
+            });
+
+            // Feature Toggle Indicator
+            featureToggles.forEach(toggle => {
+                toggle.addEventListener('change', (e) => {
+                    const statusId = e.target.getAttribute('data-status-id');
+                    const statusEl = document.getElementById(statusId);
+                    if (statusEl) {
+                        if (e.target.checked) {
+                            statusEl.classList.remove('hidden');
+                        } else {
+                            statusEl.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Start Injection Action
+            startInjectionBtn.addEventListener('click', () => {
+                injectionModal.classList.remove('hidden');
+                let progress = 0;
+                injectionProgressBar.style.width = '0%';
+                injectionProgressText.innerText = '0%';
+
+                const interval = setInterval(() => {
+ 
